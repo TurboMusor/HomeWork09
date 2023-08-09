@@ -1,23 +1,29 @@
- public class LuckyShuttles {
-        public static void main(String[] args) {
-            System.out.println("Перші 100 номерів без нещасливих чисел:");
+public class LuckyShuttles {
+    public static void main(String[] args) {
+        int count = 0;
+        int number = 1;
 
-            int count = 0;
-            int number = 1;
-
-            while (count < 100 && number <= 100) {
-                if (!isUnluckyNumber(number)) {
-                    System.out.print(number + " ");
-                    count++;
-                }
-                number++;
+        System.out.println("Номери космічних шатлів без нещасливих чисел:");
+        while (count < 100) {
+            if (!isUnluckyNumber(number)) {
+                System.out.print(number + " ");
+                count++;
             }
+            number++;
         }
-
-        public static boolean isUnluckyNumber(int num) {
-            return num % 10 == 4 || num % 10 == 9 || num / 10 == 4 || num / 10 == 9;
-        }
+        System.out.println("\nЗагальна кількість шатлів: " + count);
     }
 
+    public static boolean isUnluckyNumber(int num) {
+        if (num % 10 == 4 || num % 10 == 9) {
+            return true;
+        }
 
+        int tensDigit = (num / 10) % 10;
+        if (tensDigit == 4 || tensDigit == 9) {
+            return true;
+        }
 
+        return false;
+    }
+}
